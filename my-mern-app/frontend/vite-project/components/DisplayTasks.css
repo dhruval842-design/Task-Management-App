@@ -1,0 +1,322 @@
+/*
+  DisplayTasks.css
+  This stylesheet provides a modern and responsive design for the DisplayTasks component.
+  It includes styles for the main layout, task cards, filter buttons, and a modal-like edit form.
+*/
+
+/* General Layout & Background */
+body {
+    background-color: #f8fafc; /* Light gray-blue background */
+}
+
+.main-container {
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Filter Buttons */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Pill shape */
+    border: 2px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #475569;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.filter-btn:hover {
+    background-color: #3b82f6; /* Tailwind blue-500 */
+    border-color: #3b82f6;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.filter-btn.active {
+    background-color: #3b82f6; /* Tailwind blue-500 */
+    color: #ffffff;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4), 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+/* Task Grid and Cards */
+.user-task-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.no-task-message {
+    text-align: center;
+    padding: 3rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.no-task-message h3 {
+    color: #475569;
+    font-size: 1.5rem;
+}
+
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.task-data {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.task-data:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.task-data h2 {
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.task-data p {
+    color: #64748b;
+    line-height: 1.5;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.task-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+}
+
+.status-badge-completed {
+    color: #22c55e; /* Green */
+    font-weight: bold;
+}
+
+.status-badge-in-progress {
+    color: #f97316; /* Orange */
+    font-weight: bold;
+}
+
+.status-badge-archived {
+    color: #64748b; /* Gray */
+    font-weight: bold;
+}
+
+.status-badge-pending {
+    color: #ef4444; /* Red */
+    font-weight: bold;
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-btn {
+    background-color: #6366f1; /* Indigo */
+}
+
+.edit-btn:hover {
+    background-color: #4f46e5;
+    transform: scale(1.05);
+}
+
+.complete-btn {
+    background-color: #22c55e; /* Green */
+}
+
+.complete-btn:hover {
+    background-color: #16a34a;
+    transform: scale(1.05);
+}
+
+.delete-btn {
+    background-color: #ef4444; /* Red */
+}
+
+.delete-btn:hover {
+    background-color: #dc2626;
+    transform: scale(1.05);
+}
+
+/* Edit Form (Modal-like Styling) */
+.task-edit-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.edit-task-form {
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.edit-task-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.edit-task-form label {
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.edit-task-form input,
+.edit-task-form textarea,
+.edit-task-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #1e293b;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-task-form input:focus,
+.edit-task-form textarea:focus,
+.edit-task-form select:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.edit-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.editform-save-btn,
+.editform-cancel-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.editform-save-btn {
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+.editform-save-btn:hover {
+    background-color: #16a34a;
+    transform: translateY(-1px);
+}
+
+.editform-cancel-btn {
+    background-color: #e2e8f0;
+    color: #475569;
+}
+
+.editform-cancel-btn:hover {
+    background-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-container {
+        padding: 1rem;
+    }
+
+    .filter-container {
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .task-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-task-form {
+        padding: 2rem;
+    }
+}

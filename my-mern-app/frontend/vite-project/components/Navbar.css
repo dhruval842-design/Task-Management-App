@@ -1,0 +1,123 @@
+/* Navbar.css */
+
+.navbar {
+    /* A fresh, subtle multi-stop gradient for a unique look */
+    background: linear-gradient(135deg, #289dad 0%, #a2cea5 50%, #5e8cb0 100%);
+    padding: 12px 25px; /* Increased padding for a more spacious feel */
+    display: flex;
+    justify-content: space-between;
+   /* Align items vertically in the center */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); /* Softer, more diffused shadow */
+    font-family: 'Inter', sans-serif;
+    border-radius: 12px; /* More rounded corners for a modern look */
+    margin: 15px; /* Increased margin for better separation from page content */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle light border for definition */
+    backdrop-filter: blur(5px); /* Optional: slight blur effect if placed over content */
+}
+
+/* Styling the list container */
+.navbar > li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Ensures inner ul elements are side-by-side */
+    gap: 25px; /* Increased gap between main navigation items */
+    align-items: center;
+}
+
+/* Styling the inner <ul> elements which act as wrappers for Links */
+.navbar > li ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-link-tag {
+    text-decoration: none;
+    color: #4a4a4a; /* A sophisticated dark grey for links */
+    font-weight: 600; /* Slightly bolder for prominence */
+    font-size: 1.05em; /* Maintained font size */
+    padding: 10px 15px; /* Generous padding for easier clicking */
+    border-radius: 8px; /* Rounded corners for link backgrounds */
+    position: relative; /* Needed for pseudo-element hover effect */
+    overflow: hidden; /* Hide overflow of pseudo-element */
+    z-index: 1;
+    transition: color 0.4s ease, background-color 0.4s ease, transform 0.2s ease;
+}
+
+.navbar-link-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #a7d9f7; /* Light blue background for hover */
+    border-radius: 8px;
+    z-index: -1;
+    transform: scaleX(0); /* Start scaled down horizontally */
+    transform-origin: left; /* Grow from left */
+    transition: transform 0.4s ease;
+}
+
+.navbar-link-tag:hover {
+    color: #1e88e5; /* Deeper blue on hover */
+    transform: translateY(-3px); /* Slightly more pronounced lift */
+}
+
+.navbar-link-tag:hover::before {
+    transform: scaleX(1); /* Expand background on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .navbar > li {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin-bottom: 15px;
+        align-items: stretch; /* Stretch items to full width */
+    }
+
+    .navbar > li ul {
+        width: 100%; /* Ensure inner ul takes full width */
+    }
+
+    .navbar-link-tag {
+        width: calc(100% - 30px); /* Adjust width for padding */
+        text-align: center;
+        padding: 12px 0; /* More vertical padding */
+        font-size: 1em;
+    }
+
+    .navbar-profile-info {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px; /* Space between nav links and profile info */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        margin: 5px;
+        padding: 8px 10px;
+    }
+
+    .navbar > li {
+        gap: 8px;
+    }
+
+    .navbar-link-tag {
+        padding: 10px 0;
+        font-size: 0.95em;
+    }
+}
